@@ -1,3 +1,6 @@
 [submodule "color-console"]
 	path = color-console
 	url = https://github.com/imfl/color-console
+[submodule "anycall"]
+	path = anycall
+	url = https://github.com/kkent030315/anycall
