@@ -8,3 +8,9 @@
 
 # anyelevate
 x64 Windows privilege elevation using anycall
+
+## License
+
+MIT copyright Kento Oki \<hrn832@protonmail.com\>
+
+[color-console](https://github.com/kkent030315/anyelevate/blob/main/anyelevate/color.hpp) copyright 2018 Lei Fu
