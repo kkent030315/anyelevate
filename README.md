@@ -6,6 +6,8 @@
 <img src="https://img.shields.io/github/license/kkent030315/anyelevate?style=for-the-badge">
 </p>
 
+*CI falling because of version mismatch of static library, dont care*
+
 # anyelevate
 x64 Windows privilege elevation using anycall
 
@@ -27,6 +29,8 @@ kernel::memcpy(
     &system_process_token,
     sizeof( EX_FAST_REF ) );
 ```
+
+Then you are `NT AUTHORITY\SYSTEM`.
 
 ## License
 
