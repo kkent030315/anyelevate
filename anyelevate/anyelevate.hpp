@@ -41,7 +41,14 @@
 
 namespace anyelevate
 {
+	//
+	// this holds a pointer that holds PEPROCESS of system process(4)
+	//
 	inline PEPROCESS system_process = {};
+
+	//
+	// the nt!_EPROCESS.Token of system process(4)
+	//
 	inline EX_FAST_REF system_process_token = {};
 
 	//
@@ -59,7 +66,7 @@ namespace anyelevate
 
 	bool init()
 	{
-		NTSTATUS nt_status;
+		NTSTATUS nt_status = STATUS_SUCCESS;
 
 		nt_status =
 			ANYCALL_INVOKE( PsLookupProcessByProcessId, 

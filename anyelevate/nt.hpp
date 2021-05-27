@@ -1,5 +1,3 @@
-#pragma once
-#include <windows.h>
 /*
 
 	MIT License
@@ -26,7 +24,11 @@
 
 */
 
+#pragma once
+#include <windows.h>
 #include <winternl.h>
+
+#define STATUS_SUCCESS ((NTSTATUS)0x00000000L)
 
 // PEPROCESS is too bug to define here
 typedef PVOID PEPROCESS;
