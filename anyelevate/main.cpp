@@ -27,8 +27,6 @@
 #include <windows.h>
 #include <iostream>
 
-#define ANYCALL_LOG_ENABLED 0
-
 #include "libanycall.h"
 #include "anyelevate.hpp"
 
