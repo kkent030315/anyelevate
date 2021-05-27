@@ -32,12 +32,14 @@
 namespace kernel
 {
 	//
-	// not rva
+	// this pointer holds ntoskrnl's exported memcpy
+	// not rva, absolute address
 	//
 	inline void* ntoskrnl_memcpy = {};
 
 	//
 	// memcpy of kernel virtual memory
+	// invoke memcpy inside ntoskrnl
 	//
 	void memcpy( void* dst, void* src, size_t size )
 	{
