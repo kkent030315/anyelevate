@@ -30,7 +30,8 @@ kernel::memcpy(
     sizeof( EX_FAST_REF ) );
 ```
 
-Then you are `NT AUTHORITY\SYSTEM`.
+Then you are `NT AUTHORITY\SYSTEM`.  
+Imagine this is all done by one thing - the physical memory mapping.
 
 ## License
 
